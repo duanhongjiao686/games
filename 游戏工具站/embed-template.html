@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Embed Template - ToolyGames.com</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        .header p {
+            font-size: 1rem;
+            color: #7f8c8d;
+        }
+        .template-section {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            border-bottom: 2px solid #f1f1f1;
+            padding-bottom: 10px;
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        .preview-container {
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            border: 1px dashed #ccc;
+            margin-bottom: 20px;
+        }
+        .game-frame {
+            width: 100%;
+            height: 500px;
+            border: none;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        .btn-generate {
+            background-color: #2ecc71;
+        }
+        .btn-generate:hover {
+            background-color: #27ae60;
+        }
+        .btn-copy {
+            background-color: #9b59b6;
+            margin-left: 10px;
+        }
+        .btn-copy:hover {
+            background-color: #8e44ad;
+        }
+        .code-box {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+        .alert {
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .form-instructions {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-left: 4px solid #3498db;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            .template-section {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Game Embed Template Generator</h1>
+            <p>Easily generate embed code for your games</p>
+        </div>
+        
+        <div class="template-section">
+            <h2 class="section-title">Game Information</h2>
+            
+            <div class="form-instructions">
+                <p><strong>Instructions:</strong> Enter the game URL and details below. After previewing the game, you can generate the embed code.</p>
+            </div>
+            
+            <form id="game-form">
+                <div class="form-group">
+                    <label for="game-url">Game URL (Required):</label>
+                    <input type="url" id="game-url" placeholder="https://play.famobi.com/game-name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="game-title">Game Title:</label>
+                    <input type="text" id="game-title" placeholder="e.g., Awesome Puzzle Game">
+                </div>
+                
+                <div class="form-group">
+                    <label for="game-category">Game Category:</label>
+                    <input type="text" id="game-category" placeholder="e.g., Puzzle, Action, Strategy">
+                </div>
+                
+                <div class="form-group">
+                    <label for="game-description">Game Description:</label>
+                    <textarea id="game-description" placeholder="Brief description of the game..."></textarea>
+                </div>
+                
+                <button type="button" id="preview-btn" class="btn">Preview Game</button>
+            </form>
+        </div>
+        
+        <div class="template-section">
+            <h2 class="section-title">Game Preview</h2>
+            
+            <div class="preview-container">
+                <iframe id="game-preview" class="game-frame" src="about:blank" sandbox="allow-scripts allow-same-origin allow-forms allow-popups" title="Game Preview"></iframe>
+            </div>
+            
+            <button type="button" id="generate-btn" class="btn btn-generate">Generate Embed Code</button>
+        </div>
+        
+        <div class="template-section" id="code-section" style="display: none;">
+            <h2 class="section-title">Embed Codes</h2>
+            
+            <div class="alert alert-success" id="copy-alert">Code copied to clipboard!</div>
+            
+            <h3>HTML Embed Code:</h3>
+            <div class="code-box" id="html-code"></div>
+            <button type="button" class="btn btn-copy" id="copy-html">Copy HTML</button>
+            
+            <h3 style="margin-top: 20px;">Iframe Embed Code:</h3>
+            <div class="code-box" id="iframe-code"></div>
+            <button type="button" class="btn btn-copy" id="copy-iframe">Copy Iframe</button>
+            
+            <h3 style="margin-top: 20px;">Game Card HTML:</h3>
+            <div class="code-box" id="card-code"></div>
+            <button type="button" class="btn btn-copy" id="copy-card">Copy Card HTML</button>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const gameForm = document.getElementById('game-form');
+            const previewBtn = document.getElementById('preview-btn');
+            const generateBtn = document.getElementById('generate-btn');
+            const gamePreview = document.getElementById('game-preview');
+            const codeSection = document.getElementById('code-section');
+            const copyAlert = document.getElementById('copy-alert');
+            
+            // Preview Button
+            previewBtn.addEventListener('click', function() {
+                const gameUrl = document.getElementById('game-url').value;
+                
+                if (!gameUrl) {
+                    alert('Please enter a game URL');
+                    return;
+                }
+                
+                // Load the game in the preview iframe
+                gamePreview.src = gameUrl;
+            });
+            
+            // Generate Button
+            generateBtn.addEventListener('click', function() {
+                const gameUrl = document.getElementById('game-url').value;
+                const gameTitle = document.getElementById('game-title').value || 'Game Title';
+                const gameCategory = document.getElementById('game-category').value || 'Game';
+                const gameDescription = document.getElementById('game-description').value || 'Play this exciting game!';
+                
+                if (!gameUrl) {
+                    alert('Please enter a game URL and preview it first');
+                    return;
+                }
+                
+                // Generate HTML code
+                const htmlCode = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${gameTitle} - Play Online</title>
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; }
+        .game-container { width: 100%; height: 100%; }
+        .game-frame { width: 100%; height: 100%; border: none; }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <iframe class="game-frame" src="${gameUrl}" sandbox="allow-scripts allow-same-origin allow-forms allow-popups" title="${gameTitle}"></iframe>
+    </div>
+</body>
+</html>`;
+                
+                // Generate iframe code
+                const iframeCode = `<iframe src="${gameUrl}" style="width:100%; height:500px; border:none;" sandbox="allow-scripts allow-same-origin allow-forms allow-popups" title="${gameTitle}"></iframe>`;
+                
+                // Generate card HTML
+                const cardCode = `<div class="game-card">
+    <div class="game-thumbnail">
+        <iframe src="${gameUrl}" style="width:100%; height:200px; border:none; pointer-events:none; overflow:hidden; position:relative; margin-top:-40px;" sandbox="allow-scripts" title="${gameTitle}"></iframe>
+        <div class="game-overlay">
+            <a href="play.html?id=game&title=${encodeURIComponent(gameTitle)}&url=${encodeURIComponent(gameUrl)}" class="btn-play">
+                <i class="fas fa-play"></i>
+            </a>
+        </div>
+    </div>
+    <div class="game-info">
+        <h3>${gameTitle}</h3>
+        <div class="game-meta">
+            <span class="game-category">${gameCategory}</span>
+            <span class="game-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </span>
+        </div>
+        <p>${gameDescription}</p>
+    </div>
+</div>`;
+                
+                // Display the codes
+                document.getElementById('html-code').textContent = htmlCode;
+                document.getElementById('iframe-code').textContent = iframeCode;
+                document.getElementById('card-code').textContent = cardCode;
+                
+                // Show the code section
+                codeSection.style.display = 'block';
+                
+                // Scroll to the code section
+                codeSection.scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            // Copy buttons
+            document.getElementById('copy-html').addEventListener('click', function() {
+                copyToClipboard('html-code');
+            });
+            
+            document.getElementById('copy-iframe').addEventListener('click', function() {
+                copyToClipboard('iframe-code');
+            });
+            
+            document.getElementById('copy-card').addEventListener('click', function() {
+                copyToClipboard('card-code');
+            });
+            
+            // Function to copy text to clipboard
+            function copyToClipboard(elementId) {
+                const element = document.getElementById(elementId);
+                const text = element.textContent;
+                
+                navigator.clipboard.writeText(text).then(function() {
+                    // Show the copy alert
+                    copyAlert.style.display = 'block';
+                    
+                    // Hide the alert after 2 seconds
+                    setTimeout(function() {
+                        copyAlert.style.display = 'none';
+                    }, 2000);
+                }).catch(function(err) {
+                    console.error('Could not copy text: ', err);
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

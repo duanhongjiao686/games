@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Tools - ToolyGames.com</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Icon Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <meta name="description" content="Admin Tools - For administrators only">
+    <meta name="robots" content="noindex, nofollow">
+    <style>
+        /* Control Panel Styles */
+        .control-panel {
+            background-color: #f5f7fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .control-panel h3 {
+            margin-top: 0;
+            color: #333;
+            font-size: 1.2rem;
+        }
+        
+        .control-group {
+            margin-bottom: 15px;
+        }
+        
+        .control-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .control-panel select,
+        .control-panel input,
+        .control-panel button {
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            width: 100%;
+            max-width: 300px;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .primary-btn {
+            background-color: #4a6cf7;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .primary-btn:hover {
+            background-color: #3a5ce5;
+        }
+        
+        .secondary-btn {
+            background-color: #e9ecef;
+            color: #495057;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .secondary-btn:hover {
+            background-color: #dee2e6;
+        }
+        
+        /* Custom Card Grid */
+        .card-grid-container {
+            margin-top: 30px;
+        }
+        
+        /* Loading Animation */
+        .loading {
+            text-align: center;
+            padding: 50px 0;
+            color: #666;
+        }
+        
+        .loading i {
+            margin-right: 10px;
+            animation: spin 1s infinite linear;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .button-group button {
+                width: 100%;
+            }
+        }
+        
+        /* Login Form Styles */
+        .login-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .login-form .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .login-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .login-form input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .login-form button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4a6cf7;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .login-form button:hover {
+            background-color: #3a5ce5;
+        }
+        
+        .admin-content {
+            display: none; /* Hidden by default */
+        }
+        
+        .login-error {
+            color: #e74c3c;
+            margin-top: -10px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            display: none;
+        }
+        
+        .admin-tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .admin-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            font-weight: 500;
+        }
+        
+        .admin-tab.active {
+            border-bottom-color: #4a6cf7;
+            color: #4a6cf7;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Checkbox Group Styles */
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .checkbox-label input[type="checkbox"] {
+            width: auto;
+            margin-right: 8px;
+        }
+        
+        /* Add to New Releases Button Style */
+        .button-group .secondary-btn.success {
+            background-color: #2ecc71;
+            color: white;
+        }
+        
+        .button-group .secondary-btn.success:hover {
+            background-color: #27ae60;
+        }
+        
+        /* Operation Result Message Box */
+        .result-message {
+            margin-top: 15px;
+            padding: 10px 15px;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .result-message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .result-message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <h1>ToolyGames.com</h1>
+                </a>
+            </div>
+            
+            <!-- Navigation Menu -->
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="new.html">New Games</a></li>
+                    <li><a href="popular.html">Popular</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Mobile Menu Button -->
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h2>Administration Tools</h2>
+                <p>For administrators only</p>
+            </div>
+        </section>
+        
+        <!-- Login Form -->
+        <div class="container" id="login-section">
+            <div class="login-container">
+                <h2>Admin Login</h2>
+                <div class="login-form">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" placeholder="Enter admin username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter password">
+                    </div>
+                    <p class="login-error" id="login-error">Incorrect username or password</p>
+                    <button type="button" id="login-btn">Login</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Admin Content -->
+        <div class="admin-content" id="admin-content">
+            <div class="container">
+                <!-- Admin Tabs -->
+                <div class="admin-tabs">
+                    <div class="admin-tab active" data-tab="card-generator">Automatic Card Generator</div>
+                    <div class="admin-tab" data-tab="site-stats">Website Statistics</div>
+                    <div class="admin-tab" data-tab="settings">Website Settings</div>
+                </div>
+                
+                <!-- Tab Contents -->
+                <div class="tab-content active" id="card-generator">
+                    <!-- Control Panel -->
+                    <div class="control-panel">
+                        <h3>Card Generation Controls</h3>
+                        
+                        <div class="control-group">
+                            <label for="card-count">Number of Cards:</label>
+                            <input type="number" id="card-count" min="1" max="30" value="12">
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="image-source">Image Source:</label>
+                            <select id="image-source">
+                                <option value="picsum">Lorem Picsum (Random Images)</option>
+                                <option value="unsplash">Unsplash (Game-Related Images)</option>
+                                <option value="placeholder">Plain Placeholder</option>
+                            </select>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="auto-category">Auto Categorize:</label>
+                            <select id="auto-category">
+                                <option value="random">Random Categories</option>
+                                <option value="action">Action Games</option>
+                                <option value="strategy">Strategy Games</option>
+                                <option value="rpg">Role-Playing Games</option>
+                                <option value="puzzle">Puzzle Games</option>
+                                <option value="arcade">Arcade Games</option>
+                                <option value="sports">Sports Games</option>
+                            </select>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label>Add Badges:</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="new-badge" checked> 
+                                    <span>Add "New Release" Badge</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="hot-badge"> 
+                                    <span>Add "Popular" Badge</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="button-group">
+                            <button id="generate-btn" class="primary-btn">
+                                <i class="fas fa-magic"></i> Generate Cards
+                            </button>
+                            <button id="clear-btn" class="secondary-btn">
+                                <i class="fas fa-trash-alt"></i> Clear
+                            </button>
+                            <button id="export-btn" class="secondary-btn">
+                                <i class="fas fa-download"></i> Export HTML
+                            </button>
+                            <button id="add-to-new-btn" class="secondary-btn">
+                                <i class="fas fa-plus-circle"></i> Add to New Releases
+                            </button>
+                        </div>
+                        
+                        <!-- Operation Result Message -->
+                        <div class="result-message" id="result-message"></div>
+                    </div>
+                    
+                    <!-- Card Generation Area -->
+                    <div class="card-grid-container">
+                        <h2 class="section-title">Automatically Generated Cards</h2>
+                        <div id="auto-cards-container" class="games-grid">
+                            <!-- Cards will be generated here -->
+                            <div class="loading">
+                                <i class="fas fa-spinner"></i> Ready. Click "Generate Cards" to start
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Website Statistics Tab -->
+                <div class="tab-content" id="site-stats">
+                    <div class="control-panel">
+                        <h3>Website Visitor Statistics</h3>
+                        <p>This feature is currently under development...</p>
+                    </div>
+                </div>
+                
+                <!-- Website Settings Tab -->
+                <div class="tab-content" id="settings">
+                    <div class="control-panel">
+                        <h3>Website Settings</h3>
+                        <p>This feature is currently under development...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <script src="js/main.js"></script>
+    <script src="js/admin-tools.js"></script>
+</body>
+</html> 

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Embed Tools - ToolyGames.com</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Icon Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <meta name="description" content="ToolyGames.com embed tools for adding games to your website.">
+    <style>
+        .tools-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        
+        .tools-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .tools-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .tools-header p {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .tool-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .tool-icon {
+            background-color: #3498db;
+            color: white;
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .tool-icon i {
+            font-size: 4rem;
+        }
+        
+        .tool-content {
+            padding: 25px;
+        }
+        
+        .tool-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .tool-content p {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .tool-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .tool-link:hover {
+            background-color: #2980b9;
+        }
+        
+        @media (max-width: 768px) {
+            .tools-container {
+                padding: 15px;
+            }
+            
+            .tools-header h1 {
+                font-size: 2rem;
+            }
+            
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <h1>ToolyGames.com</h1>
+                </a>
+            </div>
+            
+            <!-- Navigation Menu -->
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="new.html">New Games</a></li>
+                    <li><a href="popular.html">Popular</a></li>
+                    <li class="active"><a href="embed-tools.html">Embed Tools</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Mobile Menu Button -->
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main>
+        <div class="tools-container">
+            <div class="tools-header">
+                <h1>Game Embed Tools</h1>
+                <p>Easy-to-use tools to help you add games to your website. No coding experience required!</p>
+            </div>
+            
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon" style="background-color: #2ecc71;">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="tool-content">
+                        <h3>Game Embed Template</h3>
+                        <p>Create embed code for any game URL. Just paste the game link, preview it, and generate the code.</p>
+                        <a href="embed-template.html" class="tool-link">Use Tool</a>
+                    </div>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon" style="background-color: #9b59b6;">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <div class="tool-content">
+                        <h3>Game Card Generator</h3>
+                        <p>Generate HTML for game cards that match the ToolyGames.com design for your website.</p>
+                        <a href="admin-tools.html" class="tool-link">Use Tool</a>
+                    </div>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon" style="background-color: #e74c3c;">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="tool-content">
+                        <h3>Documentation</h3>
+                        <p>Learn how to use our embed tools effectively with detailed guides and examples.</p>
+                        <a href="#" class="tool-link">View Docs</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <script src="js/main.js"></script>
+</body>
+</html> 

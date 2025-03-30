@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>热门游戏 - ToolyGames.com</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Icon Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <meta name="description" content="ToolyGames.com的最热门游戏，无需下载即可畅玩。">
+    <style>
+        /* 热门游戏页面特定样式 */
+        .page-banner {
+            background-color: #f5f7fb;
+            padding: 30px 0;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .page-banner h1 {
+            font-size: 2.5rem;
+            color: #181c38;
+            margin-bottom: 15px;
+        }
+        
+        .page-banner p {
+            color: #6c757d;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .game-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .game-thumbnail {
+            position: relative;
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .game-thumbnail iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            pointer-events: none;
+        }
+        
+        .game-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .game-card:hover .game-overlay {
+            opacity: 1;
+        }
+        
+        .btn-play {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: #6c46f7;
+            color: white;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(108, 70, 247, 0.5);
+            transition: transform 0.3s;
+        }
+        
+        .btn-play:hover {
+            transform: scale(1.1);
+        }
+        
+        .game-info {
+            padding: 15px;
+        }
+        
+        .game-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #181c38;
+        }
+        
+        .game-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .game-category {
+            color: #6c46f7;
+            font-weight: 600;
+        }
+        
+        .game-rating {
+            color: #ffc107;
+        }
+        
+        .game-info p {
+            color: #6c757d;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        .no-games {
+            text-align: center;
+            padding: 100px 20px;
+            color: #6c757d;
+        }
+        
+        @media (max-width: 768px) {
+            .games-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 页面头部 -->
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <h1>ToolyGames.com</h1>
+                </a>
+            </div>
+            
+            <!-- 搜索栏 -->
+            <div class="search-bar">
+                <form action="#" method="get">
+                    <input type="text" placeholder="搜索游戏..." name="search">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+            
+            <!-- 导航菜单 -->
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="categories.html">游戏分类</a></li>
+                    <li><a href="new.html">新游戏</a></li>
+                    <li class="active"><a href="popular.html">热门游戏</a></li>
+                    <li><a href="favorites.html">收藏夹</a></li>
+                </ul>
+            </nav>
+            
+            <!-- 移动菜单按钮 -->
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    
+    <!-- 主要内容 -->
+    <main>
+        <!-- 页面横幅 -->
+        <section class="page-banner">
+            <div class="container">
+                <h1>热门游戏</h1>
+                <p>探索我们最受欢迎的游戏，这些是玩家们最喜欢的选择。</p>
+            </div>
+        </section>
+        
+        <!-- 游戏列表 -->
+        <section class="games-list">
+            <div class="container">
+                <div class="games-grid">
+                    <!-- 游戏卡片 1: Giant Rush -->
+                    <div class="game-card">
+                        <div class="game-thumbnail">
+                            <iframe src="https://play.famobi.com/giant-rush" sandbox="allow-scripts" title="Giant Rush"></iframe>
+                            <div class="game-overlay">
+                                <a href="play.html?id=1&title=Giant Rush" class="btn-play">
+                                    <i class="fas fa-play"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="game-info">
+                            <h3>Giant Rush</h3>
+                            <div class="game-meta">
+                                <span class="game-category">Adventure</span>
+                                <span class="game-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                            </div>
+                            <p>Run, jump and grow in this fun adventure game!</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 游戏卡片 2: Rise Up -->
+                    <div class="game-card">
+                        <div class="game-thumbnail">
+                            <iframe src="https://play.famobi.com/rise-up" sandbox="allow-scripts" title="Rise Up"></iframe>
+                            <div class="game-overlay">
+                                <a href="play.html?id=12&title=Rise Up" class="btn-play">
+                                    <i class="fas fa-play"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="game-info">
+                            <h3>Rise Up</h3>
+                            <div class="game-meta">
+                                <span class="game-category">Casual</span>
+                                <span class="game-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </span>
+                            </div>
+                            <p>Protect your balloon as it rises through obstacles!</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 游戏卡片 3: Go Escape -->
+                    <div class="game-card">
+                        <div class="game-thumbnail">
+                            <iframe src="https://play.famobi.com/go-escape" sandbox="allow-scripts" title="Go Escape"></iframe>
+                            <div class="game-overlay">
+                                <a href="play.html?id=5&title=Go Escape" class="btn-play">
+                                    <i class="fas fa-play"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="game-info">
+                            <h3>Go Escape</h3>
+                            <div class="game-meta">
+                                <span class="game-category">Puzzle</span>
+                                <span class="game-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                            </div>
+                            <p>Solve puzzles to help the character escape!</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 游戏卡片 4: Color Fill 3D -->
+                    <div class="game-card">
+                        <div class="game-thumbnail">
+                            <iframe src="https://play.famobi.com/color-fill-3d" sandbox="allow-scripts" title="Color Fill 3D"></iframe>
+                            <div class="game-overlay">
+                                <a href="play.html?id=2&title=Color Fill 3D" class="btn-play">
+                                    <i class="fas fa-play"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="game-info">
+                            <h3>Color Fill 3D</h3>
+                            <div class="game-meta">
+                                <span class="game-category">Puzzle</span>
+                                <span class="game-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </span>
+                            </div>
+                            <p>Fill the board with color in this 3D puzzle game!</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 游戏卡片 5: Spot the Cat -->
+                    <div class="game-card">
+                        <div class="game-thumbnail">
+                            <iframe src="https://play.famobi.com/spot-the-cat" sandbox="allow-scripts" title="Spot the Cat"></iframe>
+                            <div class="game-overlay">
+                                <a href="play.html?id=3&title=Spot the Cat" class="btn-play">
+                                    <i class="fas fa-play"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="game-info">
+                            <h3>Spot the Cat</h3>
+                            <div class="game-meta">
+                                <span class="game-category">Puzzle</span>
+                                <span class="game-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                            </div>
+                            <p>Find the hidden cats in each puzzle!</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 游戏卡片 6: Train Miner -->
+                    <div class="game-card">
+                        <div class="game-thumbnail">
+                            <iframe src="https://play.famobi.com/train-miner" sandbox="allow-scripts" title="Train Miner"></iframe>
+                            <div class="game-overlay">
+                                <a href="play.html?id=11&title=Train Miner" class="btn-play">
+                                    <i class="fas fa-play"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="game-info">
+                            <h3>Train Miner</h3>
+                            <div class="game-meta">
+                                <span class="game-category">Strategy</span>
+                                <span class="game-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </span>
+                            </div>
+                            <p>Plan routes and collect resources in this train game!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <script src="js/main.js"></script>
+</body>
+</html> 

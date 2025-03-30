@@ -1,0 +1,28 @@
+# Monster Survivors 游戏图片说明
+
+## 游戏图片要求
+
+此处应放置一张名为"game10.jpg"的图片，用作Monster Survivors游戏的卡片图像。
+
+## 推荐图片内容
+
+Monster Survivors是一款动作冒险游戏，画面应包含：
+- 主角面对大量怪物的战斗场景
+- 游戏特色的技能和武器效果
+- 色彩鲜明、动作感强的画面
+
+## 图片来源
+
+您可以从以下途径获取合适的图片：
+1. 官方游戏网站: https://play.google.com/store/apps/details?id=games.rivvy.monstersurvivors
+2. 使用搜索引擎搜索：Monster Survivors gameplay screenshot
+3. 使用符合版权要求的游戏素材图片
+
+## 图片规格
+
+- 建议尺寸：400x300像素
+- 文件格式：JPG
+- 文件名称：game10.jpg
+- 文件大小：建议小于100KB，以提高网页加载速度
+
+请确保使用的图片符合版权要求，如有疑问，请联系游戏开发商获取授权。 

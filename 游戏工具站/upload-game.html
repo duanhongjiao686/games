@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上传游戏 - ToolyGames.com</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Icon Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <meta name="description" content="ToolyGames.com管理界面 - 上传和管理游戏">
+</head>
+<body>
+    <!-- Page Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <h1>ToolyGames.com</h1>
+                </a>
+            </div>
+            
+            <!-- Navigation Menu -->
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="categories.html">游戏分类</a></li>
+                    <li><a href="new.html">新游戏</a></li>
+                    <li><a href="popular.html">热门游戏</a></li>
+                    <li><a href="favorites.html">收藏夹</a></li>
+                    <li class="active"><a href="upload-game.html">管理游戏</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Mobile Menu Button -->
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main>
+        <section class="game-upload-section">
+            <div class="container">
+                <h2 class="section-title">上传新游戏</h2>
+                <p class="section-subtitle">填写以下信息上传新游戏，系统将自动将游戏分类到相应的游戏分类中。</p>
+                
+                <div class="admin-form">
+                    <h3>游戏信息</h3>
+                    <form id="game-upload-form">
+                        <div class="form-group">
+                            <label for="title" class="required-field">游戏标题</label>
+                            <input type="text" id="title" name="title" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="category" class="required-field">主要分类</label>
+                            <select id="category" name="category" class="form-control" required>
+                                <option value="">-- 选择分类 --</option>
+                                <option value="Action">动作游戏</option>
+                                <option value="Adventure">冒险游戏</option>
+                                <option value="Puzzle">益智游戏</option>
+                                <option value="Strategy">策略游戏</option>
+                                <option value="Role-Playing">角色扮演</option>
+                                <option value="Arcade">街机游戏</option>
+                                <option value="Sports">体育游戏</option>
+                                <option value="Casual">休闲游戏</option>
+                                <option value="Racing">赛车游戏</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="genre">游戏类型标签（多个标签用逗号分隔）</label>
+                            <input type="text" id="genre" name="genre" class="form-control" placeholder="例如：Puzzle, Strategy, Casual">
+                            <small class="form-text text-muted">添加多个类型标签可以帮助系统更准确地分类游戏</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="description" class="required-field">游戏描述</label>
+                            <textarea id="description" name="description" class="form-control" rows="3" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="embedUrl">游戏嵌入URL</label>
+                            <input type="url" id="embedUrl" name="embedUrl" class="form-control" placeholder="例如：https://play.famobi.com/color-fill-3d">
+                            <small class="form-text text-muted">如果有游戏的嵌入URL，可以直接在网站上播放</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="rating">游戏评分（1-5分）</label>
+                            <input type="number" id="rating" name="rating" class="form-control" min="1" max="5" step="0.1" value="4.0">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="releaseDate">发布日期</label>
+                            <input type="date" id="releaseDate" name="releaseDate" class="form-control">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">上传游戏</button>
+                    </form>
+                </div>
+                
+                <div class="upload-result">
+                    <h3>已上传的游戏</h3>
+                    <p>上传的游戏将自动分类到相应的游戏分类中，您可以在<a href="categories.html">游戏分类</a>页面查看。</p>
+                    
+                    <div class="games-list" id="uploaded-games">
+                        <!-- 已上传的游戏将通过JavaScript动态加载 -->
+                        <div class="no-games" id="no-uploaded-games">
+                            <p>尚未上传任何游戏</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>ToolyGames.com</h2>
+                    <p>畅玩各种精彩游戏，无需下载</p>
+                </div>
+                <div class="footer-links">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="categories.html">游戏分类</a></li>
+                        <li><a href="new.html">新游戏</a></li>
+                        <li><a href="popular.html">热门游戏</a></li>
+                        <li><a href="about.html">关于我们</a></li>
+                        <li><a href="contact.html">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>联系我们</h3>
+                    <p><i class="fas fa-envelope"></i> contact@toolygames.com</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 ToolyGames.com. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="js/main.js"></script>
+    <script src="js/admin-tools.js"></script>
+    <script>
+        // 更新已上传游戏列表
+        function updateUploadedGames() {
+            const container = document.getElementById('uploaded-games');
+            const noGamesMessage = document.getElementById('no-uploaded-games');
+            
+            // 清空现有列表（保留noGamesMessage）
+            Array.from(container.children).forEach(child => {
+                if (child !== noGamesMessage) {
+                    container.removeChild(child);
+                }
+            });
+            
+            // 检查是否有游戏数据
+            if (!window.gamesData || Object.keys(window.gamesData.games).length === 0) {
+                noGamesMessage.style.display = 'block';
+                return;
+            }
+            
+            // 隐藏"无游戏"消息
+            noGamesMessage.style.display = 'none';
+            
+            // 添加游戏到列表
+            const games = Object.values(window.gamesData.games);
+            games.forEach(game => {
+                const gameElement = document.createElement('div');
+                gameElement.className = 'game-item';
+                
+                // 创建星级评分HTML
+                const rating = game.rating || 0;
+                let stars = '';
+                for (let i = 1; i <= 5; i++) {
+                    if (i <= Math.floor(rating)) {
+                        stars += '<i class="fas fa-star"></i>';
+                    } else if (i - 0.5 <= rating) {
+                        stars += '<i class="fas fa-star-half-alt"></i>';
+                    } else {
+                        stars += '<i class="far fa-star"></i>';
+                    }
+                }
+                
+                // 获取游戏所在的分类
+                const categories = [];
+                Object.keys(window.gamesData.categories).forEach(category => {
+                    if (window.gamesData.categories[category].includes(game.id)) {
+                        categories.push(getCategoryDisplayName(category));
+                    }
+                });
+                
+                gameElement.innerHTML = `
+                    <div class="game-item-info">
+                        <h4>${game.title}</h4>
+                        <div class="game-meta">
+                            <span class="game-category">${game.category}</span>
+                            <span class="game-rating">${stars}</span>
+                        </div>
+                        <p>${game.description}</p>
+                        <div class="game-categories">
+                            <strong>所在分类:</strong> ${categories.join(', ') || '无'}
+                        </div>
+                    </div>
+                    <div class="game-item-actions">
+                        <button class="btn btn-sm btn-danger" data-id="${game.id}">删除</button>
+                    </div>
+                `;
+                
+                // 添加删除按钮事件
+                const deleteBtn = gameElement.querySelector('.btn-danger');
+                deleteBtn.addEventListener('click', function() {
+                    const gameId = this.getAttribute('data-id');
+                    if (confirm(`确定要删除游戏"${game.title}"吗？`)) {
+                        window.gamesData.removeGame(gameId);
+                        updateUploadedGames();
+                    }
+                });
+                
+                container.appendChild(gameElement);
+            });
+        }
+        
+        // 获取分类的显示名称
+        function getCategoryDisplayName(category) {
+            const categoryNames = {
+                'action': '动作游戏',
+                'adventure': '冒险游戏',
+                'puzzle': '益智游戏',
+                'strategy': '策略游戏',
+                'rpg': '角色扮演',
+                'arcade': '街机游戏',
+                'sports': '体育游戏',
+                'casual': '休闲游戏',
+                'racing': '赛车游戏'
+            };
+            
+            return categoryNames[category] || category;
+        }
+        
+        // 页面加载完成后更新游戏列表
+        document.addEventListener('DOMContentLoaded', function() {
+            // 更新已上传游戏列表
+            updateUploadedGames();
+            
+            // 监听表单提交事件
+            const form = document.getElementById('game-upload-form');
+            form.addEventListener('submit', function() {
+                // 表单提交后更新游戏列表
+                setTimeout(updateUploadedGames, 100);
+            });
+            
+            // 添加样式
+            const style = document.createElement('style');
+            style.textContent = `
+                .games-list {
+                    margin-top: 20px;
+                }
+                
+                .game-item {
+                    background-color: #f8f9fa;
+                    border-radius: 8px;
+                    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                    padding: 15px;
+                    margin-bottom: 15px;
+                    display: flex;
+                    justify-content: space-between;
+                }
+                
+                .game-item-info {
+                    flex: 1;
+                }
+                
+                .game-item h4 {
+                    margin-top: 0;
+                    margin-bottom: 5px;
+                    color: #181c38;
+                }
+                
+                .game-meta {
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 8px;
+                }
+                
+                .game-category {
+                    background-color: #e9ecef;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-size: 14px;
+                    margin-right: 10px;
+                }
+                
+                .game-rating {
+                    color: #ffc107;
+                }
+                
+                .game-item p {
+                    margin-bottom: 10px;
+                    color: #6c757d;
+                }
+                
+                .game-categories {
+                    font-size: 14px;
+                    color: #495057;
+                }
+                
+                .game-item-actions {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                }
+                
+                .btn-sm {
+                    padding: 5px 10px;
+                    font-size: 14px;
+                }
+                
+                .btn-danger {
+                    background-color: #dc3545;
+                    color: white;
+                    border: none;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    transition: background-color 0.3s;
+                }
+                
+                .btn-danger:hover {
+                    background-color: #c82333;
+                }
+                
+                .no-games {
+                    text-align: center;
+                    padding: 20px;
+                    color: #6c757d;
+                }
+                
+                .section-subtitle {
+                    text-align: center;
+                    color: #6c757d;
+                    margin-bottom: 30px;
+                }
+                
+                .form-text {
+                    font-size: 12px;
+                    color: #6c757d;
+                    margin-top: 5px;
+                }
+                
+                .upload-result {
+                    margin-top: 40px;
+                }
+                
+                .upload-result h3 {
+                    margin-bottom: 15px;
+                    color: #181c38;
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html> 

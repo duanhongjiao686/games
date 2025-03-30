@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playing Game - ToolyGames.com</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Icon Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <meta name="description" content="ToolyGames.com - Play browser games instantly with no downloads required.">
+    <style>
+        /* Game content full-width */
+        .game-content {
+            padding: 0;
+            height: calc(100vh - 60px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Game iframe */
+        .game-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+        
+        /* Exit button */
+        .exit-overlay {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 100;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .exit-overlay:hover {
+            opacity: 1;
+        }
+        
+        .exit-btn {
+            display: flex;
+            align-items: center;
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+        }
+        
+        .exit-btn:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+        }
+        
+        .exit-btn i {
+            margin-right: 5px;
+        }
+        
+        /* Fullscreen button */
+        .fullscreen-btn {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            z-index: 100;
+            background: #343a40;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .fullscreen-btn:hover {
+            opacity: 1;
+        }
+        
+        /* Loading animation */
+        .game-loading {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+        
+        .game-loading .spinner {
+            width: 60px;
+            height: 60px;
+            border: 6px solid rgba(74, 108, 247, 0.2);
+            border-radius: 50%;
+            border-top-color: #4a6cf7;
+            animation: spin 1s infinite linear;
+            margin-bottom: 20px;
+        }
+        
+        .game-loading .game-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .game-loading .loading-text {
+            color: #6c757d;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Minimal header */
+        .minimal-header {
+            background: #181c38;
+            color: white;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .minimal-header h1 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+        
+        .minimal-header .header-actions {
+            margin-left: auto;
+            display: flex;
+            gap: 15px;
+        }
+        
+        .header-action-btn {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .header-action-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Error message */
+        .error-message {
+            text-align: center;
+            padding: 100px 20px;
+            color: #6c757d;
+        }
+        
+        .error-message h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #dc3545;
+        }
+        
+        .error-message p {
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Minimal Header -->
+    <header class="minimal-header">
+        <h1>ToolyGames.com</h1>
+        <div class="header-actions">
+            <button class="header-action-btn" id="toggle-music-btn">
+                <i class="fas fa-volume-up"></i> Music On
+            </button>
+            <button class="header-action-btn" id="home-btn">
+                <i class="fas fa-home"></i> Home
+            </button>
+        </div>
+    </header>
+    
+    <!-- Game Content -->
+    <div class="game-content">
+        <!-- Loading animation -->
+        <div class="game-loading" id="game-loading">
+            <div class="spinner"></div>
+            <h2 class="game-title" id="loading-title">Loading Game...</h2>
+            <p class="loading-text">Please wait while the game loads</p>
+        </div>
+        
+        <!-- Game iframe will be inserted here -->
+        <div id="game-container"></div>
+        
+        <!-- Exit button -->
+        <div class="exit-overlay">
+            <button class="exit-btn" id="exit-game">
+                <i class="fas fa-times"></i> Exit Game
+            </button>
+        </div>
+        
+        <!-- Fullscreen button -->
+        <button class="fullscreen-btn" id="fullscreen-btn">
+            <i class="fas fa-expand"></i>
+        </button>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get game ID and title from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const gameId = urlParams.get('id');
+            const gameTitle = urlParams.get('title') || 'Game';
+            
+            // Update loading title
+            document.getElementById('loading-title').textContent = `Loading ${gameTitle}...`;
+            
+            // Update page title
+            document.title = `${gameTitle} - Playing - ToolyGames.com`;
+            
+            // Setup exit button
+            document.getElementById('exit-game').addEventListener('click', function() {
+                // Check if navigated from game details page
+                if (document.referrer.includes('game.html')) {
+                    window.location.href = document.referrer;
+                } else {
+                    window.location.href = 'index.html';
+                }
+            });
+            
+            // Setup home button
+            document.getElementById('home-btn').addEventListener('click', function() {
+                window.location.href = 'index.html';
+            });
+            
+            // Setup music toggle
+            const musicBtn = document.getElementById('toggle-music-btn');
+            let musicOn = true;
+            
+            musicBtn.addEventListener('click', function() {
+                musicOn = !musicOn;
+                if (musicOn) {
+                    this.innerHTML = '<i class="fas fa-volume-up"></i> Music On';
+                    // Code to resume game music
+                } else {
+                    this.innerHTML = '<i class="fas fa-volume-mute"></i> Music Off';
+                    // Code to mute game music
+                }
+            });
+            
+            // Setup fullscreen button
+            const fullscreenBtn = document.getElementById('fullscreen-btn');
+            fullscreenBtn.addEventListener('click', function() {
+                toggleFullScreen();
+            });
+            
+            // Load game based on ID
+            loadGame(gameId, gameTitle);
+        });
+        
+        /**
+         * Load game into iframe
+         */
+        function loadGame(gameId, gameTitle) {
+            const gameContainer = document.getElementById('game-container');
+            const loadingElement = document.getElementById('game-loading');
+            
+            // Create iframe
+            const iframe = document.createElement('iframe');
+            iframe.className = 'game-iframe';
+            iframe.id = 'game-iframe';
+            iframe.allowFullscreen = true;
+            
+            // Get game URL directly from parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const gameUrl = urlParams.get('url');
+            
+            // If gameUrl is provided in the URL parameters, use it directly
+            if (gameUrl) {
+                iframe.src = gameUrl;
+                iframe.sandbox = 'allow-scripts allow-same-origin allow-forms allow-popups';
+            }
+            // Otherwise use predefined games based on ID
+            else if (gameId === '1') {
+                // Go Escape
+                iframe.src = 'https://play.famobi.com/go-escape';
+                iframe.sandbox = 'allow-scripts allow-same-origin allow-forms allow-popups';
+            } else if (gameId === '2') {
+                // Color Fill 3D
+                iframe.src = 'https://play.famobi.com/color-fill-3d';
+                iframe.sandbox = 'allow-scripts allow-same-origin allow-forms allow-popups';
+            } else if (gameId === '3') {
+                // Spot the Cat
+                iframe.src = 'https://play.famobi.com/spot-the-cat';
+                iframe.sandbox = 'allow-scripts allow-same-origin allow-forms allow-popups';
+            } else if (gameId === '4') {
+                // Color Roll 3D
+                iframe.src = 'https://play.famobi.com/color-roll-3d';
+                iframe.sandbox = 'allow-scripts allow-same-origin allow-forms allow-popups';
+            } else if (gameId === '10') {
+                // Color Water Sort 3D
+                iframe.src = 'https://play.famobi.com/color-water-sort-3d';
+                iframe.sandbox = 'allow-scripts allow-same-origin allow-forms allow-popups';
+            } else if (gameId === '11') {
+                // Monster Survivors
+                iframe.src = 'https://cloud.onlinegames.io/games/2025/unity/monster-survivors/index-og.html';
+                iframe.sandbox = 'allow-scripts allow-same-origin allow-forms allow-popups';
+            } else if (gameId === '12') {
+                // Train Miner
+                iframe.src = 'https://play.famobi.com/train-miner';
+                iframe.sandbox = 'allow-scripts allow-same-origin allow-forms allow-popups';
+            } else {
+                // Default or error case
+                gameContainer.innerHTML = `
+                    <div class="error-message">
+                        <h2>Game Not Found</h2>
+                        <p>Sorry, the game you are looking for does not exist or has been removed.</p>
+                        <a href="index.html" class="btn btn-primary">Return to Home</a>
+                    </div>
+                `;
+                loadingElement.style.display = 'none';
+                return;
+            }
+            
+            // Add iframe to container
+            gameContainer.appendChild(iframe);
+            
+            // Wait for iframe to load
+            iframe.onload = function() {
+                setTimeout(() => {
+                    loadingElement.style.display = 'none';
+                }, 1500);
+            };
+            
+            // Fallback if iframe onload doesn't fire
+            setTimeout(() => {
+                loadingElement.style.display = 'none';
+            }, 5000);
+        }
+        
+        /**
+         * Toggle fullscreen mode
+         */
+        function toggleFullScreen() {
+            const iframe = document.getElementById('game-iframe');
+            
+            if (!document.fullscreenElement) {
+                // Enter fullscreen
+                if (iframe.requestFullscreen) {
+                    iframe.requestFullscreen();
+                } else if (iframe.mozRequestFullScreen) { // Firefox
+                    iframe.mozRequestFullScreen();
+                } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                    iframe.webkitRequestFullscreen();
+                } else if (iframe.msRequestFullscreen) { // IE/Edge
+                    iframe.msRequestFullscreen();
+                }
+                
+                // Update icon
+                document.getElementById('fullscreen-btn').innerHTML = '<i class="fas fa-compress"></i>';
+            } else {
+                // Exit fullscreen
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.mozCancelFullScreen) { // Firefox
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) { // Chrome, Safari and Opera
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) { // IE/Edge
+                    document.msExitFullscreen();
+                }
+                
+                // Update icon
+                document.getElementById('fullscreen-btn').innerHTML = '<i class="fas fa-expand"></i>';
+            }
+        }
+        
+        // Listen for fullscreen change
+        document.addEventListener('fullscreenchange', updateFullscreenButton);
+        document.addEventListener('webkitfullscreenchange', updateFullscreenButton);
+        document.addEventListener('mozfullscreenchange', updateFullscreenButton);
+        document.addEventListener('MSFullscreenChange', updateFullscreenButton);
+        
+        function updateFullscreenButton() {
+            const fullscreenBtn = document.getElementById('fullscreen-btn');
+            if (document.fullscreenElement) {
+                fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+            } else {
+                fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+            }
+        }
+    </script>
+</body>
+</html> 
