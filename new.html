@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>最新游戏 - ToolyGames.com</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Icon Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <meta name="description" content="ToolyGames.com的最新上线游戏，无需下载即可畅玩。">
+    <style>
+        /* 新游戏页面特定样式 */
+        .page-banner {
+            background-color: #f5f7fb;
+            padding: 30px 0;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .page-banner h1 {
+            font-size: 2.5rem;
+            color: #181c38;
+            margin-bottom: 15px;
+        }
+        
+        .page-banner p {
+            color: #6c757d;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .game-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .game-thumbnail {
+            position: relative;
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .game-thumbnail iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            pointer-events: none;
+        }
+        
+        .game-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .game-card:hover .game-overlay {
+            opacity: 1;
+        }
+        
+        .btn-play {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: #6c46f7;
+            color: white;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(108, 70, 247, 0.5);
+            transition: transform 0.3s;
+        }
+        
+        .btn-play:hover {
+            transform: scale(1.1);
+        }
+        
+        .game-info {
+            padding: 15px;
+        }
+        
+        .game-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #181c38;
+        }
+        
+        .game-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .game-category {
+            color: #6c46f7;
+            font-weight: 600;
+        }
+        
+        .game-rating {
+            color: #ffc107;
+        }
+        
+        .game-info p {
+            color: #6c757d;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        .no-games {
+            text-align: center;
+            padding: 100px 20px;
+            color: #6c757d;
+        }
+        
+        @media (max-width: 768px) {
+            .games-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 页面头部 -->
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <h1>ToolyGames.com</h1>
+                </a>
+            </div>
+            
+            <!-- 搜索栏 -->
+            <div class="search-bar">
+                <form action="#" method="get">
+                    <input type="text" placeholder="搜索游戏..." name="search">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+            
+            <!-- 导航菜单 -->
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="categories.html">游戏分类</a></li>
+                    <li class="active"><a href="new.html">新游戏</a></li>
+                    <li><a href="popular.html">热门游戏</a></li>
+                    <li><a href="favorites.html">收藏夹</a></li>
+                </ul>
+            </nav>
+            
+            <!-- 移动菜单按钮 -->
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    
+    <!-- 主要内容 -->
+    <main>
+        <!-- 页面横幅 -->
+        <section class="page-banner">
+            <div class="container">
+                <h1>最新游戏</h1>
+                <p>探索我们最新上线的游戏，随时体验最新、最好玩的在线游戏。</p>
+            </div>
+        </section>
+        
+        <!-- 游戏列表 -->
+        <section class="games-list">
+            <div class="container">
+                <div class="games-grid">
+                    <!-- 游戏卡片: Color Water Sort 3D -->
+                    <div class="game-card">
+                        <div class="game-thumbnail">
+                            <iframe src="https://play.famobi.com/color-water-sort-3d" sandbox="allow-scripts" title="Color Water Sort 3D"></iframe>
+                            <div class="game-overlay">
+                                <a href="play.html?id=10&title=Color Water Sort 3D" class="btn-play">
+                                    <i class="fas fa-play"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="game-info">
+                            <h3>Color Water Sort 3D</h3>
+                            <div class="game-meta">
+                                <span class="game-category">益智游戏</span>
+                                <span class="game-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                            </div>
+                            <p>将相同颜色的液体排序到同一个瓶子里！</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 游戏卡片: Color Roll 3D -->
+                    <div class="game-card">
+                        <div class="game-thumbnail">
+                            <iframe src="https://play.famobi.com/color-roll-3d" sandbox="allow-scripts" title="Color Roll 3D"></iframe>
+                            <div class="game-overlay">
+                                <a href="play.html?id=4&title=Color Roll 3D" class="btn-play">
+                                    <i class="fas fa-play"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="game-info">
+                            <h3>Color Roll 3D</h3>
+                            <div class="game-meta">
+                                <span class="game-category">Puzzle</span>
+                                <span class="game-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </span>
+                            </div>
+                            <p>滚动彩色小球填充空间！</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <script src="js/main.js"></script>
+</body>
+</html> 
