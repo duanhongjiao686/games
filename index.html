@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToolyGames.com - Play Instantly, No Downloads Required</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Icon Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <meta name="description" content="ToolyGames.com offers a curated selection of browser games you can play instantly with no downloads required.">
+</head>
+<body>
+    <!-- Page Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <h1>ToolyGames.com</h1>
+                </a>
+            </div>
+            
+            <!-- Search Bar -->
+            <div class="search-bar">
+                <form action="#" method="get">
+                    <input type="text" placeholder="Search games..." name="search">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+            
+            <!-- Navigation Menu -->
+            <nav class="main-nav">
+                <ul>
+                    <li class="active"><a href="index.html">Home</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="new.html">New Games</a></li>
+                    <li><a href="popular.html">Popular</a></li>
+                    <li><a href="favorites.html">Favorites</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Mobile Menu Button -->
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main>
+        <!-- 推荐游戏 - 水平滚动展示 -->
+        <section class="games-showcase">
+            <div class="container">
+                <div class="showcase-header">
+                    <h2 class="showcase-title">推荐游戏</h2>
+                    <a href="popular.html" class="showcase-more">
+                        查看更多 <i class="fas fa-chevron-right"></i>
+                    </a>
+                </div>
+                <div class="showcase-container">
+                    <div class="showcase-nav prev" id="popular-prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="games-row" id="popular-games-row">
+                        <!-- 游戏卡片 1: Giant Rush -->
+                        <div class="showcase-card">
+                            <div class="showcase-thumbnail">
+                                <iframe src="https://play.famobi.com/giant-rush" sandbox="allow-scripts" title="Giant Rush"></iframe>
+                                <div class="game-overlay">
+                                    <a href="play.html?id=1&title=Giant Rush" class="btn-play">
+                                        <i class="fas fa-play"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="showcase-info">
+                                <h3>Giant Rush</h3>
+                                <div class="showcase-meta">
+                                    <span class="game-category">Adventure</span>
+                                    <span class="game-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </span>
+                                </div>
+                                <p>Run, jump and grow in this fun adventure game!</p>
+                            </div>
+                        </div>
+                        
+                        <!-- 游戏卡片 2: Rise Up -->
+                        <div class="showcase-card">
+                            <div class="showcase-thumbnail">
+                                <iframe src="https://play.famobi.com/rise-up" sandbox="allow-scripts" title="Rise Up"></iframe>
+                                <div class="game-overlay">
+                                    <a href="play.html?id=12&title=Rise Up" class="btn-play">
+                                        <i class="fas fa-play"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="showcase-info">
+                                <h3>Rise Up</h3>
+                                <div class="showcase-meta">
+                                    <span class="game-category">Casual</span>
+                                    <span class="game-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </span>
+                                </div>
+                                <p>Protect your balloon as it rises through obstacles!</p>
+                            </div>
+                        </div>
+                        
+                        <!-- 游戏卡片 3: Go Escape -->
+                        <div class="showcase-card">
+                            <div class="showcase-thumbnail">
+                                <iframe src="https://play.famobi.com/go-escape" sandbox="allow-scripts" title="Go Escape"></iframe>
+                                <div class="game-overlay">
+                                    <a href="play.html?id=1&title=Go Escape" class="btn-play">
+                                        <i class="fas fa-play"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="showcase-info">
+                                <h3>Go Escape</h3>
+                                <div class="showcase-meta">
+                                    <span class="game-category">Puzzle</span>
+                                    <span class="game-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </span>
+                                </div>
+                                <p>Solve puzzles to help the character escape!</p>
+                            </div>
+                        </div>
+                        
+                        <!-- 游戏卡片 4: Color Fill 3D -->
+                        <div class="showcase-card">
+                            <div class="showcase-thumbnail">
+                                <iframe src="https://play.famobi.com/color-fill-3d" sandbox="allow-scripts" title="Color Fill 3D"></iframe>
+                                <div class="game-overlay">
+                                    <a href="play.html?id=2&title=Color Fill 3D" class="btn-play">
+                                        <i class="fas fa-play"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="showcase-info">
+                                <h3>Color Fill 3D</h3>
+                                <div class="showcase-meta">
+                                    <span class="game-category">Puzzle</span>
+                                    <span class="game-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </span>
+                                </div>
+                                <p>Fill the board with color in this 3D puzzle game!</p>
+                            </div>
+                        </div>
+                        
+                        <!-- 游戏卡片 5: Spot the Cat -->
+                        <div class="showcase-card">
+                            <div class="showcase-thumbnail">
+                                <iframe src="https://play.famobi.com/spot-the-cat" sandbox="allow-scripts" title="Spot the Cat"></iframe>
+                                <div class="game-overlay">
+                                    <a href="play.html?id=3&title=Spot the Cat" class="btn-play">
+                                        <i class="fas fa-play"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="showcase-info">
+                                <h3>Spot the Cat</h3>
+                                <div class="showcase-meta">
+                                    <span class="game-category">Puzzle</span>
+                                    <span class="game-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </span>
+                                </div>
+                                <p>Find the hidden cats in each puzzle!</p>
+                            </div>
+                        </div>
+                        
+                        <!-- 游戏卡片 6: Train Miner -->
+                        <div class="showcase-card">
+                            <div class="showcase-thumbnail">
+                                <iframe src="https://play.famobi.com/train-miner" sandbox="allow-scripts" title="Train Miner"></iframe>
+                                <div class="game-overlay">
+                                    <a href="play.html?id=11&title=Train Miner" class="btn-play">
+                                        <i class="fas fa-play"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="showcase-info">
+                                <h3>Train Miner</h3>
+                                <div class="showcase-meta">
+                                    <span class="game-category">Strategy</span>
+                                    <span class="game-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </span>
+                                </div>
+                                <p>Plan routes and collect resources in this train game!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="showcase-nav next" id="popular-next">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 最新游戏 - 水平滚动展示 -->
+        <section class="games-showcase">
+            <div class="container">
+                <div class="showcase-header">
+                    <h2 class="showcase-title">最新游戏</h2>
+                    <a href="new.html" class="showcase-more">
+                        查看更多 <i class="fas fa-chevron-right"></i>
+                    </a>
+                </div>
+                <div class="showcase-container">
+                    <div class="showcase-nav prev" id="new-prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="games-row" id="new-games-row">
+                        <!-- 游戏卡片 1: Color Water Sort 3D -->
+                        <div class="showcase-card">
+                            <div class="showcase-thumbnail">
+                                <iframe src="https://play.famobi.com/color-water-sort-3d" sandbox="allow-scripts" title="Color Water Sort 3D"></iframe>
+                                <div class="game-overlay">
+                                    <a href="play.html?id=10&title=Color Water Sort 3D" class="btn-play">
+                                        <i class="fas fa-play"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="showcase-info">
+                                <h3>Color Water Sort 3D</h3>
+                                <div class="showcase-meta">
+                                    <span class="game-category">益智游戏</span>
+                                    <span class="game-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </span>
+                                </div>
+                                <p>将相同颜色的液体排序到同一个瓶子里！</p>
+                            </div>
+                        </div>
+                        
+                        <!-- 游戏卡片 2: Color Roll 3D -->
+                        <div class="showcase-card">
+                            <div class="showcase-thumbnail">
+                                <iframe src="https://play.famobi.com/color-roll-3d" sandbox="allow-scripts" title="Color Roll 3D"></iframe>
+                                <div class="game-overlay">
+                                    <a href="play.html?id=4&title=Color Roll 3D" class="btn-play">
+                                        <i class="fas fa-play"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="showcase-info">
+                                <h3>Color Roll 3D</h3>
+                                <div class="showcase-meta">
+                                    <span class="game-category">Puzzle</span>
+                                    <span class="game-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </span>
+                                </div>
+                                <p>滚动彩色小球填充空间！</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="showcase-nav next" id="new-next">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Game Categories -->
+        <section class="game-categories">
+            <div class="container">
+                <h2 class="section-title">游戏分类</h2>
+                
+                <div class="category-sections">
+                    <!-- 益智游戏 -->
+                    <div class="category-section">
+                        <div class="category-header">
+                            <div class="category-header-left">
+                                <div class="category-icon"><i class="fas fa-puzzle-piece"></i></div>
+                                <h3 class="category-name">益智游戏</h3>
+                            </div>
+                            <a href="categories.html?cat=puzzle" class="category-more">
+                                查看更多 <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+                        <div class="category-games-container">
+                            <div class="category-nav prev" id="puzzle-prev">
+                                <i class="fas fa-chevron-left"></i>
+                            </div>
+                            <div class="category-games" id="puzzle-games-row">
+                                <!-- Color Water Sort 3D -->
+                                <a href="play.html?id=10&title=Color Water Sort 3D" class="category-game-item">
+                                    <div class="category-game-thumb">
+                                        <iframe src="https://play.famobi.com/color-water-sort-3d" sandbox="allow-scripts" title="Color Water Sort 3D"></iframe>
+                                    </div>
+                                    <div class="category-game-info">
+                                        <h3 class="category-game-name">Color Water Sort 3D</h3>
+                                        <div class="category-game-meta">
+                                            <span class="game-category">益智游戏</span>
+                                            <span class="game-rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </span>
+                                        </div>
+                                        <p class="category-game-desc">将相同颜色的液体排序到同一个瓶子里！</p>
+                                    </div>
+                                </a>
+                                
+                                <!-- Color Fill 3D -->
+                                <a href="play.html?id=2&title=Color Fill 3D" class="category-game-item">
+                                    <div class="category-game-thumb">
+                                        <iframe src="https://play.famobi.com/color-fill-3d" sandbox="allow-scripts" title="Color Fill 3D"></iframe>
+                                    </div>
+                                    <div class="category-game-info">
+                                        <h3 class="category-game-name">Color Fill 3D</h3>
+                                        <div class="category-game-meta">
+                                            <span class="game-category">益智游戏</span>
+                                            <span class="game-rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star-half-alt"></i>
+                                            </span>
+                                        </div>
+                                        <p class="category-game-desc">填充色彩占领3D空间，挑战思维极限！</p>
+                                    </div>
+                                </a>
+                                
+                                <!-- Spot the Cat -->
+                                <a href="play.html?id=3&title=Spot the Cat" class="category-game-item">
+                                    <div class="category-game-thumb">
+                                        <iframe src="https://play.famobi.com/spot-the-cat" sandbox="allow-scripts" title="Spot the Cat"></iframe>
+                                    </div>
+                                    <div class="category-game-info">
+                                        <h3 class="category-game-name">Spot the Cat</h3>
+                                        <div class="category-game-meta">
+                                            <span class="game-category">益智游戏</span>
+                                            <span class="game-rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </span>
+                                        </div>
+                                        <p class="category-game-desc">在各种场景中找出隐藏的猫咪，考验观察力！</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="category-nav next" id="puzzle-next">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 策略游戏 -->
+                    <div class="category-section">
+                        <div class="category-header">
+                            <div class="category-header-left">
+                                <div class="category-icon"><i class="fas fa-chess"></i></div>
+                                <h3 class="category-name">策略游戏</h3>
+                            </div>
+                            <a href="categories.html?cat=strategy" class="category-more">
+                                查看更多 <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+                        <div class="category-games-container">
+                            <div class="category-nav prev" id="strategy-prev">
+                                <i class="fas fa-chevron-left"></i>
+                            </div>
+                            <div class="category-games" id="strategy-games-row">
+                                <!-- Train Miner -->
+                                <a href="play.html?id=11&title=Train Miner" class="category-game-item">
+                                    <div class="category-game-thumb">
+                                        <iframe src="https://play.famobi.com/train-miner" sandbox="allow-scripts" title="Train Miner"></iframe>
+                                    </div>
+                                    <div class="category-game-info">
+                                        <h3 class="category-game-name">Train Miner</h3>
+                                        <div class="category-game-meta">
+                                            <span class="game-category">策略游戏</span>
+                                            <span class="game-rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star-half-alt"></i>
+                                            </span>
+                                        </div>
+                                        <p class="category-game-desc">规划路线和收集资源，建立自己的铁路帝国！</p>
+                                    </div>
+                                </a>
+                                
+                                <!-- Color Roll 3D -->
+                                <a href="play.html?id=4&title=Color Roll 3D" class="category-game-item">
+                                    <div class="category-game-thumb">
+                                        <iframe src="https://play.famobi.com/color-roll-3d" sandbox="allow-scripts" title="Color Roll 3D"></iframe>
+                                    </div>
+                                    <div class="category-game-info">
+                                        <h3 class="category-game-name">Color Roll 3D</h3>
+                                        <div class="category-game-meta">
+                                            <span class="game-category">策略游戏</span>
+                                            <span class="game-rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star-half-alt"></i>
+                                            </span>
+                                        </div>
+                                        <p class="category-game-desc">滚动彩色小球填充空间，需要战略思维！</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="category-nav next" id="strategy-next">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 动作游戏 -->
+                    <div class="category-section">
+                        <div class="category-header">
+                            <div class="category-header-left">
+                                <div class="category-icon"><i class="fas fa-gamepad"></i></div>
+                                <h3 class="category-name">动作游戏</h3>
+                            </div>
+                            <a href="categories.html?cat=action" class="category-more">
+                                查看更多 <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+                        <div class="category-games-container">
+                            <div class="category-nav prev" id="action-prev">
+                                <i class="fas fa-chevron-left"></i>
+                            </div>
+                            <div class="category-games" id="action-games-row">
+                                <!-- Giant Rush -->
+                                <a href="play.html?id=1&title=Giant Rush" class="category-game-item">
+                                    <div class="category-game-thumb">
+                                        <iframe src="https://play.famobi.com/giant-rush" sandbox="allow-scripts" title="Giant Rush"></iframe>
+                                    </div>
+                                    <div class="category-game-info">
+                                        <h3 class="category-game-name">Giant Rush</h3>
+                                        <div class="category-game-meta">
+                                            <span class="game-category">动作游戏</span>
+                                            <span class="game-rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </span>
+                                        </div>
+                                        <p class="category-game-desc">奔跑、跳跃并成长，收集资源变成巨人！</p>
+                                    </div>
+                                </a>
+                                
+                                <!-- Go Escape -->
+                                <a href="play.html?id=5&title=Go Escape" class="category-game-item">
+                                    <div class="category-game-thumb">
+                                        <iframe src="https://play.famobi.com/go-escape" sandbox="allow-scripts" title="Go Escape"></iframe>
+                                    </div>
+                                    <div class="category-game-info">
+                                        <h3 class="category-game-name">Go Escape</h3>
+                                        <div class="category-game-meta">
+                                            <span class="game-category">动作游戏</span>
+                                            <span class="game-rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </span>
+                                        </div>
+                                        <p class="category-game-desc">解决谜题帮助角色逃离危险区域！</p>
+                                    </div>
+                                </a>
+                                
+                                <!-- Rise Up -->
+                                <a href="play.html?id=12&title=Rise Up" class="category-game-item">
+                                    <div class="category-game-thumb">
+                                        <iframe src="https://play.famobi.com/rise-up" sandbox="allow-scripts" title="Rise Up"></iframe>
+                                    </div>
+                                    <div class="category-game-info">
+                                        <h3 class="category-game-name">Rise Up</h3>
+                                        <div class="category-game-meta">
+                                            <span class="game-category">动作游戏</span>
+                                            <span class="game-rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star-half-alt"></i>
+                                            </span>
+                                        </div>
+                                        <p class="category-game-desc">保护你的气球穿过障碍物不断上升！</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="category-nav next" id="action-next">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 角色扮演 -->
+                    <div class="category-section">
+                        <div class="category-header">
+                            <div class="category-header-left">
+                                <div class="category-icon"><i class="fas fa-dragon"></i></div>
+                                <h3 class="category-name">角色扮演</h3>
+                            </div>
+                            <a href="categories.html?cat=rpg" class="category-more">
+                                查看更多 <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+                        <div class="category-games-container">
+                            <div class="category-nav prev" id="rpg-prev">
+                                <i class="fas fa-chevron-left"></i>
+                            </div>
+                            <div class="category-games" id="rpg-games-row">
+                                <!-- Giant Rush -->
+                                <a href="play.html?id=1&title=Giant Rush" class="category-game-item">
+                                    <div class="category-game-thumb">
+                                        <iframe src="https://play.famobi.com/giant-rush" sandbox="allow-scripts" title="Giant Rush"></iframe>
+                                    </div>
+                                    <div class="category-game-info">
+                                        <h3 class="category-game-name">Giant Rush</h3>
+                                        <div class="category-game-meta">
+                                            <span class="game-category">角色扮演</span>
+                                            <span class="game-rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </span>
+                                        </div>
+                                        <p class="category-game-desc">扮演一个不断成长的英雄冒险者，探索神秘世界！</p>
+                                    </div>
+                                </a>
+                                
+                                <!-- Go Escape -->
+                                <a href="play.html?id=5&title=Go Escape" class="category-game-item">
+                                    <div class="category-game-thumb">
+                                        <iframe src="https://play.famobi.com/go-escape" sandbox="allow-scripts" title="Go Escape"></iframe>
+                                    </div>
+                                    <div class="category-game-info">
+                                        <h3 class="category-game-name">Go Escape</h3>
+                                        <div class="category-game-meta">
+                                            <span class="game-category">角色扮演</span>
+                                            <span class="game-rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </span>
+                                        </div>
+                                        <p class="category-game-desc">扮演一位勇敢的冒险者，闯关逃离危险！</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="category-nav next" id="rpg-next">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 街机游戏 -->
+                    <div class="category-section">
+                        <div class="category-header">
+                            <div class="category-header-left">
+                                <div class="category-icon"><i class="fas fa-rocket"></i></div>
+                                <h3 class="category-name">街机游戏</h3>
+                            </div>
+                            <a href="categories.html?cat=arcade" class="category-more">
+                                查看更多 <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+                        <div class="category-games-container">
+                            <div class="category-nav prev" id="arcade-prev">
+                                <i class="fas fa-chevron-left"></i>
+                            </div>
+                            <div class="category-games" id="arcade-games-row">
+                                <!-- Rise Up -->
+                                <a href="play.html?id=12&title=Rise Up" class="category-game-item">
+                                    <div class="category-game-thumb">
+                                        <iframe src="https://play.famobi.com/rise-up" sandbox="allow-scripts" title="Rise Up"></iframe>
+                                    </div>
+                                    <div class="category-game-info">
+                                        <h3 class="category-game-name">Rise Up</h3>
+                                        <div class="category-game-meta">
+                                            <span class="game-category">街机游戏</span>
+                                            <span class="game-rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star-half-alt"></i>
+                                            </span>
+                                        </div>
+                                        <p class="category-game-desc">保护你的气球穿过障碍物不断上升！</p>
+                                    </div>
+                                </a>
+                                
+                                <!-- Giant Rush -->
+                                <a href="play.html?id=1&title=Giant Rush" class="category-game-item">
+                                    <div class="category-game-thumb">
+                                        <iframe src="https://play.famobi.com/giant-rush" sandbox="allow-scripts" title="Giant Rush"></iframe>
+                                    </div>
+                                    <div class="category-game-info">
+                                        <h3 class="category-game-name">Giant Rush</h3>
+                                        <div class="category-game-meta">
+                                            <span class="game-category">街机游戏</span>
+                                            <span class="game-rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </span>
+                                        </div>
+                                        <p class="category-game-desc">奔跑、跳跃并成长，收集资源变成巨人！</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="category-nav next" id="arcade-next">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 体育游戏 -->
+                    <div class="category-section">
+                        <div class="category-header">
+                            <div class="category-header-left">
+                                <div class="category-icon"><i class="fas fa-football-ball"></i></div>
+                                <h3 class="category-name">体育游戏</h3>
+                            </div>
+                            <a href="categories.html?cat=sports" class="category-more">
+                                查看更多 <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+                        <div class="category-games-container">
+                            <div class="category-nav prev" id="sports-prev">
+                                <i class="fas fa-chevron-left"></i>
+                            </div>
+                            <div class="category-games" id="sports-games-row">
+                                <!-- Giant Rush -->
+                                <a href="play.html?id=1&title=Giant Rush" class="category-game-item">
+                                    <div class="category-game-thumb">
+                                        <iframe src="https://play.famobi.com/giant-rush" sandbox="allow-scripts" title="Giant Rush"></iframe>
+                                    </div>
+                                    <div class="category-game-info">
+                                        <h3 class="category-game-name">Giant Rush</h3>
+                                        <div class="category-game-meta">
+                                            <span class="game-category">体育游戏</span>
+                                            <span class="game-rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </span>
+                                        </div>
+                                        <p class="category-game-desc">跑步竞速游戏，通过障碍物收集资源！</p>
+                                    </div>
+                                </a>
+                                
+                                <!-- Train Miner -->
+                                <a href="play.html?id=11&title=Train Miner" class="category-game-item">
+                                    <div class="category-game-thumb">
+                                        <iframe src="https://play.famobi.com/train-miner" sandbox="allow-scripts" title="Train Miner"></iframe>
+                                    </div>
+                                    <div class="category-game-info">
+                                        <h3 class="category-game-name">Train Miner</h3>
+                                        <div class="category-game-meta">
+                                            <span class="game-category">体育游戏</span>
+                                            <span class="game-rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star-half-alt"></i>
+                                            </span>
+                                        </div>
+                                        <p class="category-game-desc">控制火车，收集资源完成任务！</p>
+                                    </div>
+                                </a>
+                                
+                                <!-- Rise Up -->
+                                <a href="play.html?id=12&title=Rise Up" class="category-game-item">
+                                    <div class="category-game-thumb">
+                                        <iframe src="https://play.famobi.com/rise-up" sandbox="allow-scripts" title="Rise Up"></iframe>
+                                    </div>
+                                    <div class="category-game-info">
+                                        <h3 class="category-game-name">Rise Up</h3>
+                                        <div class="category-game-meta">
+                                            <span class="game-category">体育游戏</span>
+                                            <span class="game-rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star-half-alt"></i>
+                                            </span>
+                                        </div>
+                                        <p class="category-game-desc">挑战你的反应能力和手眼协调性！</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="category-nav next" id="sports-next">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <script src="js/main.js"></script>
+    <script src="js/loadNewGames.js"></script>
+</body>
+</html> 
