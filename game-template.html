@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Title - ToolyGames.com</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Icon Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <meta name="description" content="Game description">
+    <style>
+        /* 游戏内容全屏 */
+        .game-content {
+            padding: 0;
+            height: calc(100vh - 60px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 游戏iframe */
+        .game-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+        
+        /* 退出按钮 */
+        .exit-overlay {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 100;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .exit-overlay:hover {
+            opacity: 1;
+        }
+        
+        .exit-btn {
+            display: flex;
+            align-items: center;
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+        }
+        
+        .exit-btn:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+        }
+        
+        .exit-btn i {
+            margin-right: 5px;
+        }
+        
+        /* 全屏按钮 */
+        .fullscreen-btn {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            z-index: 100;
+            background: #343a40;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .fullscreen-btn:hover {
+            opacity: 1;
+        }
+        
+        /* 加载动画 */
+        .game-loading {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+        
+        .game-loading .spinner {
+            width: 60px;
+            height: 60px;
+            border: 6px solid rgba(74, 108, 247, 0.2);
+            border-radius: 50%;
+            border-top-color: #4a6cf7;
+            animation: spin 1s infinite linear;
+            margin-bottom: 20px;
+        }
+        
+        .game-loading .game-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .game-loading .loading-text {
+            color: #6c757d;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* 简约头部 */
+        .minimal-header {
+            background: #181c38;
+            color: white;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .minimal-header h1 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+        
+        .minimal-header .header-actions {
+            margin-left: auto;
+            display: flex;
+            gap: 15px;
+        }
+        
+        .header-action-btn {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .header-action-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- 简约头部 -->
+    <header class="minimal-header">
+        <h1>ToolyGames.com - <span id="game-name">Game Name</span></h1>
+        <div class="header-actions">
+            <button class="header-action-btn" id="toggle-music-btn">
+                <i class="fas fa-volume-up"></i> Music On
+            </button>
+            <button class="header-action-btn" id="home-btn">
+                <i class="fas fa-home"></i> Home
+            </button>
+        </div>
+    </header>
+    
+    <!-- 游戏内容 -->
+    <div class="game-content">
+        <!-- 加载动画 -->
+        <div class="game-loading" id="game-loading">
+            <div class="spinner"></div>
+            <h2 class="game-title" id="loading-title">Loading Game...</h2>
+            <p class="loading-text">Please wait, the game is loading</p>
+        </div>
+        
+        <!-- 游戏iframe将在这里插入 -->
+        <div id="game-container"></div>
+        
+        <!-- 退出按钮 -->
+        <div class="exit-overlay">
+            <button class="exit-btn" id="exit-game">
+                <i class="fas fa-times"></i> Exit Game
+            </button>
+        </div>
+        
+        <!-- 全屏按钮 -->
+        <button class="fullscreen-btn" id="fullscreen-btn">
+            <i class="fas fa-expand"></i>
+        </button>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 从URL获取游戏ID和标题
+            const urlParams = new URLSearchParams(window.location.search);
+            const gameId = urlParams.get('id');
+            const gameTitle = urlParams.get('title') || 'Game';
+            const gameUrl = urlParams.get('url');
+            
+            // 更新加载标题
+            document.getElementById('loading-title').textContent = `Loading ${gameTitle}...`;
+            document.getElementById('game-name').textContent = gameTitle;
+            
+            // 更新页面标题
+            document.title = `${gameTitle} - ToolyGames.com`;
+            
+            // 设置退出按钮
+            document.getElementById('exit-game').addEventListener('click', function() {
+                window.location.href = 'index.html';
+            });
+            
+            // 设置主页按钮
+            document.getElementById('home-btn').addEventListener('click', function() {
+                window.location.href = 'index.html';
+            });
+            
+            // 设置音乐切换
+            const musicBtn = document.getElementById('toggle-music-btn');
+            let musicOn = true;
+            
+            musicBtn.addEventListener('click', function() {
+                musicOn = !musicOn;
+                if (musicOn) {
+                    this.innerHTML = '<i class="fas fa-volume-up"></i> Music On';
+                    // 恢复游戏音乐的代码
+                } else {
+                    this.innerHTML = '<i class="fas fa-volume-mute"></i> Music Off';
+                    // 静音游戏音乐的代码
+                }
+            });
+            
+            // 设置全屏按钮
+            const fullscreenBtn = document.getElementById('fullscreen-btn');
+            fullscreenBtn.addEventListener('click', function() {
+                toggleFullScreen();
+            });
+            
+            // 加载游戏
+            loadGame(gameId, gameTitle, gameUrl);
+        });
+        
+        /**
+         * 加载游戏到iframe
+         */
+        function loadGame(gameId, gameTitle, customUrl) {
+            const gameContainer = document.getElementById('game-container');
+            const loadingElement = document.getElementById('game-loading');
+            
+            // 创建iframe
+            const iframe = document.createElement('iframe');
+            iframe.className = 'game-iframe';
+            iframe.id = 'game-iframe';
+            iframe.allowFullscreen = true;
+            iframe.sandbox = 'allow-scripts allow-same-origin allow-forms allow-popups';
+            
+            // 如果URL直接在参数中提供，则使用它
+            if (customUrl) {
+                iframe.src = customUrl;
+            }
+            // 否则根据ID使用预定义的游戏
+            else if (gameId === '13') {
+                iframe.src = 'https://play.famobi.com/sort-it';
+            } else if (gameId === '14') {
+                iframe.src = 'https://play.famobi.com/parking-jam';
+            } else if (gameId === '15') {
+                iframe.src = 'https://play.famobi.com/fashion-battle';
+            } else if (gameId === '16') {
+                iframe.src = 'https://play.famobi.com/fruit-party';
+            } else if (gameId === '17') {
+                iframe.src = 'https://play.famobi.com/thief-puzzle';
+            } else if (gameId === '18') {
+                iframe.src = 'https://play.famobi.com/guess-their-answer';
+            } else if (gameId === '19') {
+                iframe.src = 'https://play.famobi.com/neon-rider';
+            } else {
+                // 默认或错误情况
+                gameContainer.innerHTML = `
+                    <div class="error-message">
+                        <h2>Game Not Found</h2>
+                        <p>Sorry, the game you are looking for does not exist or has been removed.</p>
+                        <a href="index.html" class="btn btn-primary">Return to Home</a>
+                    </div>
+                `;
+                loadingElement.style.display = 'none';
+                return;
+            }
+            
+            // 添加iframe到容器
+            gameContainer.appendChild(iframe);
+            
+            // 等待iframe加载
+            iframe.onload = function() {
+                setTimeout(() => {
+                    loadingElement.style.display = 'none';
+                }, 1500);
+            };
+            
+            // 如果iframe onload事件没有触发，设置备用定时器
+            setTimeout(() => {
+                loadingElement.style.display = 'none';
+            }, 5000);
+        }
+        
+        /**
+         * 切换全屏模式
+         */
+        function toggleFullScreen() {
+            const iframe = document.getElementById('game-iframe');
+            
+            if (!document.fullscreenElement) {
+                // 进入全屏
+                if (iframe.requestFullscreen) {
+                    iframe.requestFullscreen();
+                } else if (iframe.mozRequestFullScreen) { // Firefox
+                    iframe.mozRequestFullScreen();
+                } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                    iframe.webkitRequestFullscreen();
+                } else if (iframe.msRequestFullscreen) { // IE/Edge
+                    iframe.msRequestFullscreen();
+                }
+                
+                // 更新图标
+                document.getElementById('fullscreen-btn').innerHTML = '<i class="fas fa-compress"></i>';
+            } else {
+                // 退出全屏
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.mozCancelFullScreen) { // Firefox
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) { // Chrome, Safari and Opera
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) { // IE/Edge
+                    document.msExitFullscreen();
+                }
+                
+                // 更新图标
+                document.getElementById('fullscreen-btn').innerHTML = '<i class="fas fa-expand"></i>';
+            }
+        }
+        
+        // 监听全屏变化
+        document.addEventListener('fullscreenchange', updateFullscreenButton);
+        document.addEventListener('webkitfullscreenchange', updateFullscreenButton);
+        document.addEventListener('mozfullscreenchange', updateFullscreenButton);
+        document.addEventListener('MSFullscreenChange', updateFullscreenButton);
+        
+        function updateFullscreenButton() {
+            const fullscreenBtn = document.getElementById('fullscreen-btn');
+            if (document.fullscreenElement) {
+                fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+            } else {
+                fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+            }
+        }
+    </script>
+</body>
+</html> 

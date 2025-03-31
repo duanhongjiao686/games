@@ -390,6 +390,10 @@ function initCategoryNav() {
     setupCategoryNav('rpg-prev', 'rpg-next', 'rpg-games-row');
     setupCategoryNav('arcade-prev', 'arcade-next', 'arcade-games-row');
     setupCategoryNav('sports-prev', 'sports-next', 'sports-games-row');
+    
+    // 新增加的游戏分类区域
+    setupCategoryNav('featured-prev', 'featured-next', 'featured-games-row');
+    setupCategoryNav('hot-prev', 'hot-next', 'hot-games-row');
 }
 
 // 设置分类区域的翻页功能
